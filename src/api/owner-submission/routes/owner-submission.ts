@@ -1,0 +1,7 @@
+/**
+ * owner-submission router
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::owner-submission.owner-submission');

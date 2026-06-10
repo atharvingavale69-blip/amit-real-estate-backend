@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "owner_submissions",
+  "info": {
+    "singularName": "owner-submission",
+    "pluralName": "owner-submissions",
+    "displayName": "Owner Submission"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "purpose": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "bhk": {
+      "type": "string"
+    },
+    "price": {
+      "type": "string"
+    },
+    "amenities": {
+      "type": "text"
+    },
+    "photos": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "verificationStatus": {
+      "type": "enumeration",
+      "enum": [
+        "New",
+        "Pending_Verification",
+        "Approved",
+        "Rejected"
+      ],
+      "default": "New"
+    }
+  }
+}
