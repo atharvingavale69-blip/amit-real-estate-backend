@@ -21,17 +21,16 @@ const config: Core.Config.Middlewares = [
     name: 'strapi::cors',
     config: {
       enabled: true,
-      // '*' hatana behtar hai, yahan specific domains daalein
       origin: [
-        'https://amitrealestate.in',              // Aapka main production domain
-        'https://amit-real-estate.pages.dev',     // Cloudflare ka default domain
-        'https://amit-real-estate.lovable.app',   // Lovable production/temp
-        'https://*.lovable.app',                  // Wildcard for any lovable preview
-        'http://localhost:5173'                   // Local development
+        'https://amitrealestate.in',
+        'https://amit-real-estate.pages.dev',
+        'https://amit-real-estate.lovable.app',
+        'https://amit-estate-core.lovable.app', // Yeh aapka current domain hai
+        'https://*.lovable.app',
+        'http://localhost:5173'
       ], 
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
-      keepHeaderWithResponsibility: true,         // Ye true hona chahiye agar custom headers bhej rahe hain
     },
   },
   'strapi::poweredBy',
