@@ -26,7 +26,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Database 
     postgres: {
       connection: {
         connectionString: env('DATABASE_URL'),
-        ssl: env.bool('DATABASE_SSL', true) && {
+        ssl: env.bool('DATABASE_SSL', false) && {
           rejectUnauthorized: false,
         },
       },
