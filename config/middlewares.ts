@@ -15,7 +15,8 @@ const config: Core.Config.Middlewares = [
             'http:', 
             'https://*.lovable.app', 
             'https://*.pages.dev',
-            'https://amit-estate-core.lovable.app'
+            'https://amit-estate-core.lovable.app',
+            'https://admin.amitrealestate.in' // Aapka admin domain add kiya
           ],
           'img-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
           'media-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
@@ -27,9 +28,10 @@ const config: Core.Config.Middlewares = [
   {
     name: 'strapi::cors',
     config: {
-      enabled: true,
+      // 'enabled: true' yahan se hata diya gaya hai
       origin: [
         'https://amitrealestate.in',
+        'https://admin.amitrealestate.in', // Admin panel ka domain
         'https://amit-real-estate.pages.dev',
         'https://amit-real-estate.lovable.app',
         'https://amit-estate-core.lovable.app',
