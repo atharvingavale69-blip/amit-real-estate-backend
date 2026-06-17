@@ -9,7 +9,14 @@ const config: Core.Config.Middlewares = [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ["'self'", 'https:', 'http:'],
+          'connect-src': [
+            "'self'", 
+            'https:', 
+            'http:', 
+            'https://*.lovable.app', 
+            'https://*.pages.dev',
+            'https://amit-estate-core.lovable.app'
+          ],
           'img-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
           'media-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
           upgradeInsecureRequests: null,
@@ -22,13 +29,15 @@ const config: Core.Config.Middlewares = [
     config: {
       enabled: true,
       origin: [
-        'https://navi-mumbai-property.lovable.app',
-        'http://localhost:5173',
-        '*'
-      ], 
+        'https://amitrealestate.in',
+        'https://amit-real-estate.pages.dev',
+        'https://amit-real-estate.lovable.app',
+        'https://amit-estate-core.lovable.app',
+        'https://*.lovable.app',
+        'http://localhost:5173'
+      ],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
-      keepHeaderWithResponsibility: false,
     },
   },
   'strapi::poweredBy',
