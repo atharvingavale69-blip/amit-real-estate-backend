@@ -1,0 +1,39 @@
+services:
+  strapi:
+    build: .
+    restart: always
+    environment:
+      NODE_ENV: production
+      STRAPI_TELEMETRY_DISABLED: true
+      PUBLIC_URL: https://api.amitrealestate.in
+      # Dokploy mein ye variables "Environment Variables" section mein dalna
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: strapi_postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - strapi_data:/srv/app/storage
+      - strapi_uploads:/srv/app/public/uploads
+    expose:
+      - 1337
+    depends_on:
+      - strapi_postgres
+
+  strapi_postgres:
+    image: postgres:18
+    restart: always
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - strapi_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  strapi_data:
+  strapi_uploads:
+  strapi_postgres_data:
