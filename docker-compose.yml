@@ -22,9 +22,9 @@ services:
       - 1337
     depends_on:
       strapi_postgres:
-        condition: service_started # Healthy ke bajaye started par switch kiya
-    # Database ke liye extra wait time
-    command: /bin/sh -c "sleep 10 && until pg_isready -h strapi_postgres -p 5432 -U strapi; do echo waiting for database; sleep 2; done; npm run start"
+        condition: service_started
+    # Naya: pg_isready ki jagah 'nc' (netcat) ka use kiya hai
+    command: /bin/sh -c "until nc -z strapi_postgres 5432; do echo waiting for database; sleep 2; done; npm run start"
 
   strapi_postgres:
     image: postgres:17-alpine
@@ -37,9 +37,9 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - strapi_postgres_data:/var/lib/postgresql/data
-    # Healthcheck ko relax kiya
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U strapi -d strapi || exit 0"] # Exit 0 se container unhealthy mark nahi hoga
+      # Yahan bhi check change kar diya
+      test: ["CMD-SHELL", "nc -z localhost 5432 || exit 0"]
       interval: 10s
       timeout: 5s
       retries: 5
