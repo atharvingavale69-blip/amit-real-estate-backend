@@ -14,7 +14,6 @@ services:
       DATABASE_NAME: strapi
       DATABASE_USERNAME: strapi
       DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
-      # Naya: DATABASE_URL explicit add karna better hai
       DATABASE_URL: postgres://strapi:${POSTGRES_PASSWORD}@strapi_postgres:5432/strapi
     volumes:
       - strapi_data:/srv/app/storage
@@ -22,10 +21,15 @@ services:
     expose:
       - 1337
     depends_on:
+      strapi_postgres:
+        condition: service_healthy
+    links:
       - strapi_postgres
 
   strapi_postgres:
-    image: postgres:17-alpine  # <--- Correction: 18 se 17-alpine kiya
+    image: postgres:17-alpine
+    container_name: strapi_postgres
+    hostname: strapi_postgres
     restart: always
     environment:
       POSTGRES_DB: strapi
@@ -33,6 +37,11 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - strapi_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U strapi -d strapi"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   strapi_data:
