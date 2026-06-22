@@ -9,43 +9,19 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       DATABASE_CLIENT: postgres
-      DATABASE_HOST: strapi_postgres
+      DATABASE_HOST: amit-real-estate-db-jt2tsy
       DATABASE_PORT: 5432
-      DATABASE_NAME: strapi
-      DATABASE_USERNAME: strapi
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
-      DATABASE_URL: postgres://strapi:${POSTGRES_PASSWORD}@strapi_postgres:5432/strapi
+      DATABASE_NAME: amit_db_strapi
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_URL: postgres://postgres:${DATABASE_PASSWORD}@amit-real-estate-db-jt2tsy:5432/amit_db_strapi
     volumes:
       - strapi_data:/srv/app/storage
       - strapi_uploads:/srv/app/public/uploads
     expose:
       - 1337
-    depends_on:
-      strapi_postgres:
-        condition: service_started
-    # Naya: pg_isready ki jagah 'nc' (netcat) ka use kiya hai
-    command: /bin/sh -c "until nc -z strapi_postgres 5432; do echo waiting for database; sleep 2; done; npm run start"
-
-  strapi_postgres:
-    image: postgres:17-alpine
-    container_name: strapi_postgres
-    hostname: strapi_postgres
-    restart: always
-    environment:
-      POSTGRES_DB: strapi
-      POSTGRES_USER: strapi
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - strapi_postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      # Yahan bhi check change kar diya
-      test: ["CMD-SHELL", "nc -z localhost 5432 || exit 0"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 40s
+    # Managed DB already running hai, isliye 'depends_on' ki zarurat nahi hai
 
 volumes:
   strapi_data:
   strapi_uploads:
-  strapi_postgres_data:
