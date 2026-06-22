@@ -6,15 +6,15 @@ services:
       NODE_ENV: production
       STRAPI_TELEMETRY_DISABLED: true
       PUBLIC_URL: https://api.amitrealestate.in
-      JWT_SECRET: ${JWT_SECRET}
-      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      JWT_SECRET: j9ije5tmrkwoyun1gr7nwurqx5uuqpei
+      ADMIN_JWT_SECRET: szwtflkhny4jw8bpb2b0egcyikvh4and
       DATABASE_CLIENT: postgres
       DATABASE_HOST: amit-real-estate-db-jt2tsy
       DATABASE_PORT: 5432
       DATABASE_NAME: amit_db_strapi
       DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
-      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@amit-real-estate-db-jt2tsy:5432/amit_db_strapi
+      DATABASE_PASSWORD: "tqny2fj4o5zsrg1zv9xbyxfpnfqsdlvj"
+      DATABASE_URL: "postgres://postgres:tqny2fj4o5zsrg1zv9xbyxfpnfqsdlvj@amit-real-estate-db-jt2tsy:5432/amit_db_strapi"
     volumes:
       - strapi_data:/srv/app/storage
       - strapi_uploads:/srv/app/public/uploads
