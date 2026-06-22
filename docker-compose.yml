@@ -23,8 +23,6 @@ services:
     depends_on:
       strapi_postgres:
         condition: service_healthy
-    links:
-      - strapi_postgres
     command: /bin/sh -c "until pg_isready -h strapi_postgres -p 5432 -U strapi; do echo waiting for database; sleep 2; done; npm run start"
 
   strapi_postgres:
@@ -39,11 +37,12 @@ services:
     volumes:
       - strapi_postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U strapi -d strapi"]
+      # Is baar sirf basic command rakhi hai
+      test: ["CMD-SHELL", "pg_isready -U strapi"]
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
+      start_period: 60s  # <--- DATABASE KO START HONE KE LIYE 60 SECONDS DIYE HAIN
 
 volumes:
   strapi_data:
