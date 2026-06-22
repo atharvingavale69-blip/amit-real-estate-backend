@@ -5,37 +5,21 @@
   "description": "A Strapi application",
   "scripts": {
     "build": "strapi build",
-    "console": "strapi console",
-    "deploy": "strapi deploy",
-    "dev": "strapi develop",
     "develop": "strapi develop",
     "start": "strapi start",
-    "strapi": "strapi",
-    "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "strapi": "strapi"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.47.1",
     "@strapi/plugin-users-permissions": "5.47.1",
     "@strapi/strapi": "5.47.1",
-    "pg": "^8.13.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "typescript": "^5"
+    "pg": "^8.13.0"
   },
   "engines": {
-    "node": "22.x",
+    "node": ">=20.0.0",
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "56b1f409-a991-4065-9e26-bcfbb5edd784",
-    "installId": "070587e6062cea3cc94a5eae60fa453993363aac3376e9dd7ef4d82f9b3d47d4"
+    "uuid": "56b1f409-a991-4065-9e26-bcfbb5edd784"
   }
 }
