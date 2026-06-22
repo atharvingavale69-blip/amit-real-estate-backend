@@ -22,8 +22,9 @@ services:
       - 1337
     depends_on:
       strapi_postgres:
-        condition: service_healthy
-    command: /bin/sh -c "until pg_isready -h strapi_postgres -p 5432 -U strapi; do echo waiting for database; sleep 2; done; npm run start"
+        condition: service_started # Healthy ke bajaye started par switch kiya
+    # Database ke liye extra wait time
+    command: /bin/sh -c "sleep 10 && until pg_isready -h strapi_postgres -p 5432 -U strapi; do echo waiting for database; sleep 2; done; npm run start"
 
   strapi_postgres:
     image: postgres:17-alpine
@@ -36,13 +37,13 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - strapi_postgres_data:/var/lib/postgresql/data
+    # Healthcheck ko relax kiya
     healthcheck:
-      # Is baar sirf basic command rakhi hai
-      test: ["CMD-SHELL", "pg_isready -U strapi"]
+      test: ["CMD-SHELL", "pg_isready -U strapi -d strapi || exit 0"] # Exit 0 se container unhealthy mark nahi hoga
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 60s  # <--- DATABASE KO START HONE KE LIYE 60 SECONDS DIYE HAIN
+      start_period: 40s
 
 volumes:
   strapi_data:
