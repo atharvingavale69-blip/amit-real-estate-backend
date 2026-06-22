@@ -13,9 +13,8 @@ services:
       DATABASE_PORT: 5432
       DATABASE_NAME: amit_db_strapi
       DATABASE_USERNAME: postgres
-      # Password yahan direct likh diya hai
-      DATABASE_PASSWORD: "Johny09"
-      DATABASE_URL: "postgres://postgres:Johny09@amit-real-estate-db-jt2tsy:5432/amit_db_strapi"
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_URL: postgres://postgres:${POSTGRES_PASSWORD}@amit-real-estate-db-jt2tsy:5432/amit_db_strapi
     volumes:
       - strapi_data:/srv/app/storage
       - strapi_uploads:/srv/app/public/uploads
