@@ -23,8 +23,8 @@ services:
     depends_on:
       strapi_postgres:
         condition: service_healthy
-    links:
-      - strapi_postgres
+    # Ye command ensure karegi ki database ready hone ke baad hi Strapi start ho
+    command: /bin/sh -c "until pg_isready -h strapi_postgres -p 5432 -U strapi; do echo waiting for database; sleep 2; done; npm run start"
 
   strapi_postgres:
     image: postgres:17-alpine
