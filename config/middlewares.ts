@@ -20,7 +20,7 @@ const config: Core.Config.Middlewares = [
           ],
           'img-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
           'media-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
-          upgradeInsecureRequests: null,
+          'upgrade-insecure-requests': null,
         },
       },
     },
@@ -28,6 +28,7 @@ const config: Core.Config.Middlewares = [
   {
     name: 'strapi::cors',
     config: {
+      enabled: true,
       origin: [
         'https://amitrealestate.in',
         'https://admin.amitrealestate.in',
@@ -38,7 +39,8 @@ const config: Core.Config.Middlewares = [
         'http://localhost:5173'
       ],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
-      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
+      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With', 'Content-Length'],
+      keepHeaderOnError: true,
     },
   },
   'strapi::poweredBy',
