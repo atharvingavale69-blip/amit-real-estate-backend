@@ -17,11 +17,11 @@ const config: Core.Config.Middlewares = [
             'https://*.pages.dev',
             'https://amit-estate-core.lovable.app',
             'https://admin.amitrealestate.in',
-            'https://api.amitrealestate.in' // Yeh zaroori tha
+            'https://api.amitrealestate.in'
           ],
           'img-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
           'media-src': ["'self'", 'data:', 'blob:', 'https:', 'http:'],
-          'upgrade-insecure-requests': null,
+          // 'upgrade-insecure-requests': null,  <-- Ye line delete kar dein
         },
       },
     },
@@ -29,11 +29,10 @@ const config: Core.Config.Middlewares = [
   {
     name: 'strapi::cors',
     config: {
-    
       origin: [
         'https://amitrealestate.in',
         'https://admin.amitrealestate.in',
-        'https://api.amitrealestate.in', // Backend domain bhi allow karein
+        'https://api.amitrealestate.in',
         'https://amit-real-estate.pages.dev',
         'https://amit-real-estate.lovable.app',
         'https://amit-estate-core.lovable.app',
